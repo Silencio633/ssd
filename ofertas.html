@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Fashion - Ofertas Especiais</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --green: #2ecc71;
+            --navy: #2c3e50;
+            --pink: #ffb6c1;
+            --white: #ffffff;
+            --red: #e74c3c;
+            --yellow: #f1c40f;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: var(--navy);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+             border-radius: 0 0 20px 20px; /* Arredonda apenas os cantos inferiores */
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            background-color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Promotional Banner */
+        .promo-banner {
+            margin-top: 60px;
+            background: linear-gradient(45deg, var(--navy), var(--red));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .promo-banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover {
+            background-color: var(--red);
+            color: white;
+        }
+
+        .filter-button.active {
+            background-color: var(--red);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .offer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        .offer-image {
+            width: 100%;
+            height: 300px;
+            background-color: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .offer-info {
+            padding: 1rem;
+        }
+
+        .offer-title {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .original-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 0.9rem;
+        }
+
+        .offer-price {
+            color: var(--red);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+
+        .buy-button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--red);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background-color: #c0392b;
+        }
+
+        .timer-badge {
+            background-color: var(--yellow);
+            color: var(--navy);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .promo-banner h1 {
+                font-size: 1.8rem;
+            }
+
+            .countdown {
+                font-size: 1.2rem;
+            }
+
+            .filter-container {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo-container">
+                <div class="logo-image">
+                    <img src="/api/placeholder/50/50" alt="Style Fashion Logo">
+                </div>
+                <span class="logo-text">Style Fashion</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="promo-banner">
+        <h1>MEGA OFERTAS</h1>
+        <p>Até 70% OFF em produtos selecionados</p>
+        <div class="countdown" id="countdown">
+            Termina em: 23:59:59
+        </div>
+    </div>
+
+    <section class="filter-section">
+        <div class="filter-container">
+            <button class="filter-button active">Todos</button>
+            <button class="filter-button">Até 30% OFF</button>
+            <button class="filter-button">Até 50% OFF</button>
+            <button class="filter-button">Acima de 50% OFF</button>
+            <button class="filter-button">Últimas Peças</button>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="offer-grid">
+            <!-- Oferta 1 -->
+            <div class="offer-card animate__animated animate__fadeIn">
+                <div class="offer-image">
+                    <img src="C:\Users\User\Desktop\loja 1\i3.jpg" alt="Vestido Floral">
+                    <span class="discount-badge">-50%</span>
+                </div>
+                <div class="offer-info">
+                    <h3 class="offer-title">Vestido Floral Midi</h3>
+                    <div class="price-container">
+                        <span class="original-price">MT$ 2999,90</span>
+                        <span class="offer-price">MT$ 1499,95 </span>
+                    </div>
+                    <button class="buy-button">Comprar Agora</button>
+                    <div class="timer-badge">Últimas 3 unidades</div>
+                </div>
+            </div>
+
+            <!-- Oferta 2 -->
+            <div class="offer-card animate__animated animate__fadeIn">
+                <div class="offer-image">
+                    <img src="C:\Users\User\Desktop\loja 1\m1.jpg" alt="Blazer">
+                    <span class="discount-badge">-40%</span>
+                </div>
+                <div class="offer-info">
+                    <h3 class="offer-title">Blazer Slim Fit</h3>
+                    <div class="price-container">
+                        <span class="original-price">R$ 399,90</span>
+                        <span class="offer-price">R$ 239,94</span>
+                    </div>
+                    <button class="buy-button">Comprar Agora</button>
+                    <div class="timer-badge">Oferta por tempo limitado</div>
+                </div>
+            </div>
+
+            <!-- Oferta 3 -->
+            <div class="offer-card animate__animated animate__fadeIn">
+                <div class="offer-image">
+                    <img src="C:\Users\User\Desktop\loja 1\n.jpg" alt="Calça Jeans">
+                    <span class="discount-badge">-60%</span>
+                </div>
+                <div class="offer-info">
+                    <h3 class="offer-title">Calça Jeans Premium</h3>
+                    <div class="price-container">
+                        <span class="original-price">R$ 259,90</span>
+                        <span class="offer-price">R$ 103,96</span>
+                    </div>
+                    <button class="buy-button">Comprar Agora</button>
+                    <div class="timer-badge">Última chance</div>
+                </div>
+            </div>
+
+            <!-- Oferta 4 -->
+            <div class="offer-card animate__animated animate__fadeIn">
+                <div class="offer-image">
+                    <img src="C:\Users\User\Desktop\loja 1\c.jpg" alt="Conjunto">
+                    <span class="discount-badge">-70%</span>
+                </div>
+                <div class="offer-info">
+                    <h3 class="offer-title">Conjunto Esportivo</h3>
+                    <div class="price-container">
+                        <span class="original-price">R$ 299,90</span>
+                        <span class="offer-price">R$ 89,97</span>
+                    </div>
+                    <button class="buy-button">Comprar Agora</button>
+                    <div class="timer-badge">Promoção Relâmpago</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Funcionalidade para os botões de filtro
+        const filterButtons = document.querySelectorAll('.filter-button');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+        // Funcionalidade para o contador regressivo
+        function updateCountdown() {
+            const now = new Date();
+            const end = new Date();
+            end.setHours(23, 59, 59);
+
+            const diff = end - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerHTML = 
+                `Termina em: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        // Atualizar o contador a cada segundo
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
